@@ -9,10 +9,10 @@ COPY	conf/default.conf /etc/nginx/http.d/default.conf
 
 RUN		apk add openssl
 RUN		mkdir -p /etc/nginx/ssl
-RUN		openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes 
-		-subj "/C=FR/ST=PACA/L=Nice/O=42/OU=acolin/CN=localhost" \
-		-keyout /etc/nginx/ssl/inception.key \
-		-out /etc/nginx/ssl/inception.cert
+RUN		openssl req -x509 -nodes -days 365\
+		-newkey rsa:4096 -keyout /etc/nginx/ssl/self.key \ 
+		-out /etc/nginx/ssl/self.crt \
+		-subj "/C=FR/ST=PACA/L=Nice/O=42/OU=acolin/CN=localhost"
 RUN		apk add openrc
 RUN		rc-update add nginx default
 

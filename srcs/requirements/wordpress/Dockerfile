@@ -38,6 +38,7 @@ RUN	apk add php7 \
     php7-redis \
     php7-fpm \
     php7-tokenizer \
+    php7-mysqli
 
 RUN	apk add curl wget
 RUN	apk add openrc
@@ -53,6 +54,6 @@ RUN	chown -R www-data:www-data /var/www/html
 COPY	./conf/wp-config.php ./
 COPY	./conf/script.sh ./
 RUN	chmod +x ./script.sh
-ENTRYPOINT ["./script"]	
+ENTRYPOINT ["./script.sh"]	
 
 EXPOSE	9000
